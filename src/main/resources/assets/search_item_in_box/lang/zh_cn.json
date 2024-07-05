@@ -1,0 +1,6 @@
+{
+    "key.categories.search_item_in_box":"箱子搜索",
+    "key.search_item_in_box.search_in_box":"搜索物品",
+    "message.search_item_in_box.not_find": "找不到%s",
+    "message.search_item_in_box.find_result": "在%d个箱子内找到%s"
+}

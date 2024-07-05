@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "cn.xzhao.search_in_box.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "search_item_in_box.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "AbstractContainerMenuMixin",
+    "ContainerBlockEntityMixin",
+    "LevelChunkMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "key.categories.search_item_in_box":"Search in box",
+    "key.search_item_in_box.search_in_box":"Search item",
+    "message.search_item_in_box.not_find": "%s not found",
+    "message.search_item_in_box.find_result": "%s was found in %d boxes"
+}
