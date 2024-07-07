@@ -1,9 +1,10 @@
 package cn.xzhao.search_in_box;
 
+import cn.xzhao.search_in_box.net.NetworkHandler;
 import cn.xzhao.search_in_box.render.ParticleRegister;
 import cn.xzhao.search_in_box.render.particle.TopRenderParticle;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -25,26 +26,26 @@ public class SIB_MOD
     public static final String MODID = "search_item_in_box";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
-
+    public static boolean has_remote_server=false;
     public SIB_MOD()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
+        NetworkHandler.register();
         ParticleRegister.register(modEventBus);
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
-
-
+    public static MinecraftServer server;
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
+        server=event.getServer();
         // Do something when the server starts
-        LOGGER.info("This Mod"+SIB_MOD.MODID+" is no effect on server!");
+        LOGGER.info(SIB_MOD.MODID+" started.");
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -54,9 +55,7 @@ public class SIB_MOD
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+
         }
         @SubscribeEvent
         public static void registerKeyMapping(RegisterKeyMappingsEvent event){

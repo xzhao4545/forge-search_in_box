@@ -1,6 +1,6 @@
 package cn.xzhao.search_in_box.mixins;
 
-import cn.xzhao.search_in_box.SlotClickListener;
+import cn.xzhao.search_in_box.client.SlotClickListener;
 import cn.xzhao.search_in_box.mixins_methodtrans.SearchableContainerBlock;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Player;

@@ -1,11 +1,9 @@
 package cn.xzhao.search_in_box.mixins;
 
-import cn.xzhao.search_in_box.SIB_MOD;
 import cn.xzhao.search_in_box.mixins_methodtrans.SearchableContainerBlock;
 import cn.xzhao.search_in_box.render.ParticleRegister;
 import cn.xzhao.search_in_box.render.particle.TopRenderParticleType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
@@ -45,7 +43,7 @@ public abstract class ContainerBlockEntityMixin extends BlockEntity implements C
     @Override
     public boolean search_in_box$findItemInBox(ItemStack itemStack){
         if(!itemStack.isEmpty()&&search_in_box$itemsId.contains(itemStack.getItem().getDescriptionId())){
-            level.addAlwaysVisibleParticle(topParticle,this.worldPosition.getX(),this.worldPosition.getY(),this.worldPosition.getZ(),
+            level.addParticle(topParticle,this.worldPosition.getX(),this.worldPosition.getY(),this.worldPosition.getZ(),
                     0,0,0);
             return true;
         }

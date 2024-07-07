@@ -7,4 +7,5 @@ import net.minecraft.world.item.ItemStack;
 public interface SearchableContainerBlock {
     void search_in_box$updateLocalItems(Container items);
     boolean search_in_box$findItemInBox(ItemStack itemStack);
+    boolean search_in_box$findItemInBox(String item);
 }

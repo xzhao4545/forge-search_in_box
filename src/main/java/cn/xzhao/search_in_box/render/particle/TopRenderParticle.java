@@ -1,5 +1,6 @@
 package cn.xzhao.search_in_box.render.particle;
 
+import cn.xzhao.search_in_box.Config;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
@@ -42,7 +43,7 @@ public class TopRenderParticle extends TextureSheetParticle {
     protected SpriteSet sprites;
     protected TopRenderParticle(ClientLevel p_108323_, double p_108324_, double p_108325_, double p_108326_, SpriteSet p_105525_) {
         super(p_108323_, p_108324_, p_108325_, p_108326_);
-        this.lifetime = 200;   //存活时间
+        this.lifetime = Config.particleLiveTime;   //存活时间
         this.xd = 0;
         this.yd = 0;
         this.zd = 0;

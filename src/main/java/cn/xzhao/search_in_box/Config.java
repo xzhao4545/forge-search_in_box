@@ -16,15 +16,17 @@ public class Config
     private static final ForgeConfigSpec.IntValue SEARCH_DISTANCE = BUILDER
             .comment("Search distance,Unit:Chunk")
             .defineInRange("distance", 2, 0, Integer.MAX_VALUE);
-
+    private static final ForgeConfigSpec.IntValue PARTICLE_LIVE_TIME = BUILDER
+            .comment("How long the particle lives")
+            .defineInRange("particle_live_time", 200, 20, 5000);
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static int searchDistance;
-
+    public static int particleLiveTime;
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
     {
         searchDistance = SEARCH_DISTANCE.get();
-
+        particleLiveTime=PARTICLE_LIVE_TIME.get();
     }
 }
