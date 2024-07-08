@@ -11,7 +11,8 @@
   "client": [
     "AbstractContainerMenuMixin",
     "ContainerBlockEntityMixin",
-    "LevelChunkMixin"
+    "LevelChunkMixin",
+    "client.AbsContainerScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

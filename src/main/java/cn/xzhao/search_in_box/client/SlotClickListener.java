@@ -18,6 +18,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -52,6 +53,7 @@ public class SlotClickListener {
                     Level level = Minecraft.getInstance().level;
                     int px = player.blockPosition().getX() >> 4;
                     int py = player.blockPosition().getZ() >> 4;
+                    beSearchedItem=itemStack.getDescriptionId();
                     if(SIB_MOD.has_remote_server){
                         NetworkHandler.INSTANCE.sendToServer(new SearchRequestMessage(level.dimension(),px,py,Config.searchDistance,itemStack.getDescriptionId()));
                         screen.onClose();
@@ -67,15 +69,40 @@ public class SlotClickListener {
                         }
                         if (num == 0)
                             player.sendSystemMessage(Component.translatable(String.format("message.%s.not_find", SIB_MOD.MODID), itemStack.getDisplayName()));
-                        else
+                        else{
                             player.sendSystemMessage(Component.translatable(String.format("message.%s.find_result", SIB_MOD.MODID), itemStack.getDisplayName(), num));
+                            startHeightLightSlotClock();
+                        }
                         screen.onClose();
                     }
                 }
             }
         }
     }
-
+    private static int nowTick=0;
+    public static boolean isHeightLight=false;
+    private static boolean isBegin=false;
+    public static String beSearchedItem;
+    public static void startHeightLightSlotClock(){
+        nowTick=0;
+        isHeightLight=true;
+        isBegin=true;
+    }
+    public static void closeHeightLightSlot(){
+        isBegin=false;
+        nowTick=0;
+        isHeightLight=false;
+        beSearchedItem=null;
+    }
+    @SubscribeEvent
+    public static void playerTick(TickEvent.ClientTickEvent event){
+        if(isBegin&&nowTick<Config.slotHeightLightTime){
+            ++nowTick;
+            if(nowTick>=Config.slotHeightLightTime){
+                closeHeightLightSlot();
+            }
+        }
+    }
     public static BaseContainerBlockEntity containerBlock;
 
     @SubscribeEvent

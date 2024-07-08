@@ -1,5 +1,6 @@
 package cn.xzhao.search_in_box.mixins;
 
+import cn.xzhao.search_in_box.SIB_MOD;
 import cn.xzhao.search_in_box.client.SlotClickListener;
 import cn.xzhao.search_in_box.mixins_methodtrans.SearchableContainerBlock;
 import net.minecraft.core.NonNullList;
@@ -22,7 +23,7 @@ public class AbstractContainerMenuMixin {
 
     @Inject(method = "removed",at = @At("RETURN"))
     public void initializeContents(Player p_38940_, CallbackInfo ci){
-        if(SlotClickListener.containerBlock!=null){
+        if(!SIB_MOD.has_remote_server &&SlotClickListener.containerBlock!=null){
             ((SearchableContainerBlock) SlotClickListener.containerBlock).search_in_box$updateLocalItems(this.slots.get(0).container);
             SlotClickListener.containerBlock=null;
         }

@@ -12,6 +12,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static cn.xzhao.search_in_box.client.SlotClickListener.startHeightLightSlotClock;
+
 
 @OnlyIn(Dist.CLIENT)
 public class NetHandler {
@@ -27,8 +29,11 @@ public class NetHandler {
         }
         if (message.blockPosList.isEmpty())
             player.sendSystemMessage(Component.translatable(String.format("message.%s.not_find", SIB_MOD.MODID), displayName));
-        else
+        else{
             player.sendSystemMessage(Component.translatable(String.format("message.%s.find_result", SIB_MOD.MODID), displayName, message.blockPosList.size()));
+            startHeightLightSlotClock();
+
+        }
 
         for(BlockPos pos:message.blockPosList){
             level.addParticle(pr,pos.getX(),pos.getY(),pos.getZ(),
