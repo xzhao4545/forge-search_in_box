@@ -5,6 +5,7 @@ import cn.xzhao.search_in_box.net.NetworkHandler;
 import cn.xzhao.search_in_box.render.ParticleRegister;
 import cn.xzhao.search_in_box.render.particle.TopRenderParticle;
 import com.mojang.logging.LogUtils;
+import mezz.jei.api.runtime.IIngredientListOverlay;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
@@ -29,6 +30,7 @@ public class SIB_MOD
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
     public static boolean has_remote_server=false;
+    public static IIngredientListOverlay jeiIngredientListOverlay;
     public SIB_MOD()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

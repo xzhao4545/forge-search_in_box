@@ -6,6 +6,7 @@ import cn.xzhao.search_in_box.SIB_MOD;
 import cn.xzhao.search_in_box.mixins_methodtrans.FindItemLevel;
 import cn.xzhao.search_in_box.net.NetworkHandler;
 import cn.xzhao.search_in_box.net.SearchRequestMessage;
+import mezz.jei.api.ingredients.ITypedIngredient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -23,6 +24,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Optional;
+
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = SIB_MOD.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class SlotClickListener {
@@ -35,18 +38,27 @@ public class SlotClickListener {
 
     @SubscribeEvent
     public static void  onGuiKeyPress(ScreenEvent.KeyPressed.Pre event) {
-        // 检查当前屏幕是否为物品栏
-        if (event.getScreen() instanceof AbstractContainerScreen<?>) {
-
-            // 检查是否按下绑定的键
-            if (CustomKeyBindings.searchKey.getKey().getValue()==event.getKeyCode()) {
-                AbstractContainerScreen screen =  (AbstractContainerScreen)event.getScreen();
-
-                // 获取鼠标位置对应的物品槽
-                Slot slot=screen.getSlotUnderMouse();
-                if(slot==null)  return;
-                ItemStack itemStack = slot.getItem();
-
+        // 检查是否按下绑定的键
+        if (CustomKeyBindings.searchKey.getKey().getValue()==event.getKeyCode()) {
+            ItemStack itemStack = null;
+            //检查是否启用jei
+            if(SIB_MOD.jeiIngredientListOverlay !=null){
+                Optional<ITypedIngredient<?>> ingredientUnderMouse = SIB_MOD.jeiIngredientListOverlay.getIngredientUnderMouse();
+                if(ingredientUnderMouse.isPresent()&&ingredientUnderMouse.get().getIngredient() instanceof ItemStack is){
+                   itemStack=is;
+                }
+            }
+            AbstractContainerScreen<?> screen=null;
+            // 检查当前屏幕是否为物品栏
+            if (event.getScreen() instanceof AbstractContainerScreen<?> abs) {
+                screen=abs;
+                if(itemStack==null) {
+                    // 获取鼠标位置对应的物品槽
+                    Slot slot = screen.getSlotUnderMouse();
+                    if (slot == null) return;
+                    itemStack = slot.getItem();
+                }
+            }
                 // 检查物品槽是否为空
                 if (!itemStack.isEmpty()&&Minecraft.getInstance().level!=null) {
                     Player player = Minecraft.getInstance().player;
@@ -56,7 +68,7 @@ public class SlotClickListener {
                     beSearchedItem=itemStack.getDescriptionId();
                     if(SIB_MOD.has_remote_server){
                         NetworkHandler.INSTANCE.sendToServer(new SearchRequestMessage(level.dimension(),px,py,Config.searchDistance,itemStack.getDescriptionId()));
-                        screen.onClose();
+                        if(screen!=null) screen.onClose();
                     }else {
                         // 执行自定义逻辑
                         int end = Config.searchDistance;
@@ -73,10 +85,10 @@ public class SlotClickListener {
                             player.sendSystemMessage(Component.translatable(String.format("message.%s.find_result", SIB_MOD.MODID), itemStack.getDisplayName(), num));
                             startHeightLightSlotClock();
                         }
-                        screen.onClose();
+                        if(screen!=null) screen.onClose();
                     }
                 }
-            }
+
         }
     }
     private static int nowTick=0;

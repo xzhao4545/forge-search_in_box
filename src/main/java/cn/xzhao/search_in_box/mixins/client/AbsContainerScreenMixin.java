@@ -13,9 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractContainerScreen.class)
 public abstract class AbsContainerScreenMixin {
-    @Shadow
-    public static void renderSlotHighlight(GuiGraphics p_283692_, int p_281453_, int p_281915_, int p_283504_, int color) {
-    }
+
 
     @Inject(method = "renderSlot",at=@At("HEAD"))
     private void addRenderHeightLight(GuiGraphics p_281607_, Slot slot, CallbackInfo ci){
@@ -24,4 +22,6 @@ public abstract class AbsContainerScreenMixin {
                 renderSlotHighlight(p_281607_,slot.x,slot.y,0, Config.slotHeightLightColor);
         }
     }
+    @Shadow
+    public static void renderSlotHighlight(GuiGraphics p281607, int x, int y, int i, int slotHeightLightColor) {}
 }
