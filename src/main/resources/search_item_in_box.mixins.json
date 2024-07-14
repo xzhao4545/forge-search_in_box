@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "search_item_in_box.refmap.json",
   "mixins": [
+    "server.ServerPlayerMixins",
     "server.container.ServerAbsFurnaceBlockEntityMixin",
     "server.container.ServerRandomBlockEntityMixin"
   ],

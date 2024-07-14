@@ -2,6 +2,7 @@ package cn.xzhao.search_in_box.net;
 
 import cn.xzhao.search_in_box.Config;
 import cn.xzhao.search_in_box.SIB_MOD;
+import cn.xzhao.search_in_box.Utils.ValidityCheck;
 import cn.xzhao.search_in_box.mixins_methodtrans.FindItemLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -52,6 +53,15 @@ public class SearchRequestMessage {
     public static void handle(SearchRequestMessage msg, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer sender=ctx.get().getSender();
+            if(sender==null)    return;
+            int code;
+            if((code= ValidityCheck.isValidity(sender))!=0){
+                NetworkHandler.INSTANCE.sendTo(new SearchRefuseMessage(code),
+                        sender.connection.connection,
+                        NetworkDirection.PLAY_TO_CLIENT
+                );
+                return;
+            }
             // 处理接收到的消息
             ServerLevel level= SIB_MOD.server.getLevel(msg.level);
             if(level!=null){
@@ -66,12 +76,10 @@ public class SearchRequestMessage {
                                 search_in_box$serverFindItemInBox(msg.item,blocksPos);
                     }
                 }
-                if (sender != null) {
-                    NetworkHandler.INSTANCE.sendTo(new ItemBlocksPosMessage(blocksPos,msg.level,msg.item),
-                            sender.connection.connection,
-                            NetworkDirection.PLAY_TO_CLIENT
-                    );
-                }
+                NetworkHandler.INSTANCE.sendTo(new ItemBlocksPosMessage(blocksPos, msg.level, msg.item),
+                        sender.connection.connection,
+                        NetworkDirection.PLAY_TO_CLIENT
+                );
             }
         });
         ctx.get().setPacketHandled(true);

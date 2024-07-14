@@ -2,6 +2,16 @@
     "key.categories.search_item_in_box":"箱子搜索",
     "key.search_item_in_box.search_in_box":"搜索物品",
     "message.search_item_in_box.not_find": "找不到%s",
+    "message.search_item_in_box.error.frequently": "请求频繁，请稍后再试。",
+    "message.search_item_in_box.error.permission": "你没有权限进行查找。",
+    "message.search_item_in_box.error.unknown": "search_item_in_box:未知错误",
     "message.search_item_in_box.find_result": "在%2$d个箱子内找到[%1$s]",
-    "message.search_item_in_box.leaved_dimension": "在%2$d个箱子内找到[%1$s]，但是你已经离开了原来的维度。"
+    "message.search_item_in_box.leaved_dimension": "在%2$d个箱子内找到[%1$s]，但是你已经离开了原来的维度。",
+    "message.command.search_item_in_box.change.success": "enable_white_list修改为%s。",
+    "message.command.search_item_in_box.change.fail": "修改失败。enable_white_list本来就是%s。",
+    "message.command.search_item_in_box.list.show": "当前列表为空。",
+    "message.command.search_item_in_box.list.add.success": "玩家%s添加成功。",
+    "message.command.search_item_in_box.list.add.fail": "玩家%s在列表中已存在。",
+    "message.command.search_item_in_box.list.remove.success": "玩家%s删除成功。",
+    "message.command.search_item_in_box.list.remove.fail": "玩家%s在列表中不存在。"
 }

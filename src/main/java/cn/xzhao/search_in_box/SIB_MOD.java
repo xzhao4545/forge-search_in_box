@@ -1,5 +1,6 @@
 package cn.xzhao.search_in_box;
 
+import cn.xzhao.search_in_box.command.PlayerListCommand;
 import cn.xzhao.search_in_box.net.NetworkHandler;
 import cn.xzhao.search_in_box.render.ParticleRegister;
 import cn.xzhao.search_in_box.render.particle.TopRenderParticle;
@@ -9,6 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -47,7 +49,10 @@ public class SIB_MOD
         // Do something when the server starts
         LOGGER.info(SIB_MOD.MODID+" started.");
     }
-
+    @SubscribeEvent
+    public void onCommandRegister(RegisterCommandsEvent event){
+        PlayerListCommand.register(event.getDispatcher());
+    }
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents

@@ -23,6 +23,7 @@ public class NetworkHandler {private static final String PROTOCOL_VERSION = "1";
         registerMessage(SearchRequestMessage.class,SearchRequestMessage::encoder,SearchRequestMessage::decoder,SearchRequestMessage::handle);
         registerMessage(BroadcastServerMessage.class,BroadcastServerMessage::encoder,BroadcastServerMessage::decoder,BroadcastServerMessage::handle);
         registerMessage(ItemBlocksPosMessage.class,ItemBlocksPosMessage::encoder,ItemBlocksPosMessage::decoder,ItemBlocksPosMessage::handle);
+        registerMessage(SearchRefuseMessage.class,SearchRefuseMessage::encoder,SearchRefuseMessage::decoder,SearchRefuseMessage::handle);
     }
     protected static <MSG> void registerMessage(Class<MSG> messageType, BiConsumer<MSG, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, MSG> decoder, BiConsumer<MSG, Supplier<NetworkEvent.Context>> messageConsumer){
         INSTANCE.registerMessage(id++,messageType,encoder,decoder,messageConsumer);
