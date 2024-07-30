@@ -26,7 +26,7 @@ You can configure the behavior and appearance of the mod through commands or con
     ```plaintext
     /sib player_list list add [players]
     ```
-2. Remove players from the list
+2. Remove players from the li![img.png](img.png)st
     ```plaintext
     /sib player_list list remove [players]
     ```

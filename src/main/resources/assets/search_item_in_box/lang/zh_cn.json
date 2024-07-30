@@ -1,7 +1,7 @@
 {
     "key.categories.search_item_in_box":"箱子搜索",
     "key.search_item_in_box.search_in_box":"搜索物品",
-    "message.search_item_in_box.not_find": "找不到%s",
+    "message.search_item_in_box.not_find": "找不到[%s]",
     "message.search_item_in_box.error.frequently": "请求频繁，请稍后再试。",
     "message.search_item_in_box.error.permission": "你没有权限进行查找。",
     "message.search_item_in_box.error.unknown": "search_item_in_box:未知错误",

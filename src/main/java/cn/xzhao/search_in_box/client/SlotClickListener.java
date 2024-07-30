@@ -60,7 +60,7 @@ public class SlotClickListener {
                 }
             }
                 // 检查物品槽是否为空
-                if (!itemStack.isEmpty()&&Minecraft.getInstance().level!=null) {
+                if (itemStack!=null&&!itemStack.isEmpty()&&Minecraft.getInstance().level!=null) {
                     Player player = Minecraft.getInstance().player;
                     Level level = Minecraft.getInstance().level;
                     int px = player.blockPosition().getX() >> 4;

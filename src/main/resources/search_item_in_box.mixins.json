@@ -7,12 +7,12 @@
   "mixins": [
     "server.ServerPlayerMixins",
     "server.container.ServerAbsFurnaceBlockEntityMixin",
+    "LevelChunkMixin",
     "server.container.ServerRandomBlockEntityMixin"
   ],
   "client": [
     "AbstractContainerMenuMixin",
     "ContainerBlockEntityMixin",
-    "LevelChunkMixin",
     "client.AbsContainerScreenMixin"
   ],
   "injectors": {

@@ -1,7 +1,7 @@
 {
     "key.categories.search_item_in_box":"Search in box",
     "key.search_item_in_box.search_in_box":"Search item",
-    "message.search_item_in_box.not_find": "%s not found",
+    "message.search_item_in_box.not_find": "[%s] not found",
     "message.search_item_in_box.error.frequently": "Frequent requests, please try again later.",
     "message.search_item_in_box.error.permission": "You don't have access to the search.",
     "message.search_item_in_box.error.unknown": "search_item_in_box:Unknown error",
