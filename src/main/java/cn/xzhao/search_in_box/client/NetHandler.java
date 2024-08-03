@@ -33,7 +33,13 @@ public class NetHandler {
         if (message.blockPosList.isEmpty())
             player.sendSystemMessage(Component.translatable(String.format("message.%s.not_find", SIB_MOD.MODID), displayName));
         else{
-            player.sendSystemMessage(Component.translatable(String.format("message.%s.find_result", SIB_MOD.MODID), displayName, message.blockPosList.size()));
+            if(message.blockPosList.size()>1)
+                player.sendSystemMessage(Component.translatable(String.format("message.%s.find_result", SIB_MOD.MODID), displayName, message.blockPosList.size()));
+            else {
+                BlockPos pos=message.blockPosList.get(0);
+                player.sendSystemMessage(Component.translatable(String.format("message.%s.find_result", SIB_MOD.MODID), displayName, message.blockPosList.size())
+                        .append(String.format("(%d,%d,%d)",pos.getX(),pos.getY(),pos.getZ())));
+            }
             startHeightLightSlotClock();
 
         }

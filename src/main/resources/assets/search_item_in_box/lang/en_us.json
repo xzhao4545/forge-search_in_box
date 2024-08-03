@@ -6,8 +6,8 @@
     "message.search_item_in_box.error.permission": "You don't have access to the search.",
     "message.search_item_in_box.error.unknown": "search_item_in_box:Unknown error",
 
-    "message.search_item_in_box.find_result": "%1$s was found in [%2$d] boxes",
-    "message.search_item_in_box.leaved_dimension": "%1$s was found in [%2$d] boxes,but you've left that dimension.",
+    "message.search_item_in_box.find_result": "[%1$s] was found in %2$d boxes",
+    "message.search_item_in_box.leaved_dimension": "[%1$s] was found in %2$d boxes,but you've left that dimension.",
     "message.command.search_item_in_box.change.success": "enable_white_list changed to %s.",
     "message.command.search_item_in_box.change.fail": "Failed to modify. enable_white_list was already %s.",
     "message.command.search_item_in_box.list.show": "Current list is empty.",
