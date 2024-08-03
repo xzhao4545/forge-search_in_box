@@ -49,9 +49,13 @@ public class SlotClickListener {
             if (screen instanceof AbstractContainerScreen<?> abs) {
                 // 获取鼠标位置对应的物品槽
                 Slot slot = abs.getSlotUnderMouse();
-                if (slot == null) return;
-                itemStack = slot.getItem();
-                Minecraft.getInstance().setScreen(null);
+                if(slot!=null) {
+                    itemStack = slot.getItem();
+                    if (!itemStack.isEmpty())
+                        Minecraft.getInstance().setScreen(null);
+                    else
+                        return;
+                }
             }
             //检查是否启用jei
             if (itemStack == null && SIB_MOD.jeiIngredientListOverlay != null) {
@@ -61,8 +65,14 @@ public class SlotClickListener {
                     Minecraft.getInstance().setScreen(null);
                 }
                 if (itemStack == null && screen instanceof IRecipesGui irg) {
-                    itemStack = irg.getIngredientUnderMouse(() -> ItemStack.class).get();
-                    Minecraft.getInstance().setScreen(null);
+                    Optional<ItemStack> its=irg.getIngredientUnderMouse(() -> ItemStack.class);
+                    if(its.isPresent()){
+                        itemStack=its.get();
+                        if(itemStack.isEmpty())
+                            return;
+                        else
+                            Minecraft.getInstance().setScreen(null);
+                    }
                 }
             }
             // 检查物品槽是否为空
