@@ -5,6 +5,7 @@ import cn.xzhao.search_in_box.SIB_MOD;
 import cn.xzhao.search_in_box.client.ScreenRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,6 +18,7 @@ public class ParticleHUD{
     private int dieTime;
     private final Vector4f tempPos=new Vector4f();
     private final Vector4f screenPos;
+    private final ClientLevel level=Minecraft.getInstance().level;
     private final ResourceLocation texture=new ResourceLocation(SIB_MOD.MODID, "textures/particle/generic_sprite_sheet.png");
     public ParticleHUD(BlockPos blockPos) {
         screenPos =new Vector4f(
@@ -30,7 +32,7 @@ public class ParticleHUD{
     private static int num=8;
     private static int times=0;
     private static int index=0;
-    private static int signalTime=20;
+    private static int signalTime=30;
     private static int signalSize=8;
     public void render(int windowWidth,int windowHeight, GuiGraphics guiGraphics, Matrix4f mat) {
         times++;
@@ -87,7 +89,10 @@ public class ParticleHUD{
         Minecraft.getInstance().getTextureManager().bindForSetup(texture);
         guiGraphics.blit(texture, (int) x, (int) y,(int)scale,(int)scale, index*signalSize, 0,8,8,64, 8);
     }
+    public void resetDieTime(){
+        dieTime=ScreenRender.tickTime+Config.PARTICLE_LIVE_TIME.get();
+    }
     public boolean isDead() {
-        return dieTime <= ScreenRender.tickTime;
+        return dieTime <= ScreenRender.tickTime||Minecraft.getInstance().level!=level;
     }
 }

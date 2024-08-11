@@ -23,7 +23,7 @@ public class Config
     public static final ForgeConfigSpec.IntValue PARTICLE_LIVE_TIME = BUILDER
             .comment("How long the particle lives")
             .comment("Unit:Tick")
-            .defineInRange(List.of("CLIENT","particle_live_time"), 200, 20, 5000);
+            .defineInRange(List.of("CLIENT","particle_live_time"), 400, 20, 50000);
     private static final ForgeConfigSpec.IntValue SLOT_HEIGHT_LIGHT_TIME = BUILDER
         .comment("How long the slot height light.")
             .comment("Unit:Tick")

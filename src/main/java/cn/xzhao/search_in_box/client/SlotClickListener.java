@@ -6,7 +6,6 @@ import cn.xzhao.search_in_box.SIB_MOD;
 import cn.xzhao.search_in_box.mixins_methodtrans.FindItemLevel;
 import cn.xzhao.search_in_box.net.NetworkHandler;
 import cn.xzhao.search_in_box.net.SearchRequestMessage;
-import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.ingredients.ITypedIngredient;
 import mezz.jei.api.runtime.IRecipesGui;
 import net.minecraft.client.Minecraft;

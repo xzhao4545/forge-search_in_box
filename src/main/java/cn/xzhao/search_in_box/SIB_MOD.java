@@ -2,14 +2,11 @@ package cn.xzhao.search_in_box;
 
 import cn.xzhao.search_in_box.command.PlayerListCommand;
 import cn.xzhao.search_in_box.net.NetworkHandler;
-import cn.xzhao.search_in_box.render.ParticleRegister;
-import cn.xzhao.search_in_box.render.particle.TopRenderParticle;
 import com.mojang.logging.LogUtils;
 import mezz.jei.api.runtime.IIngredientListOverlay;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
@@ -34,7 +31,6 @@ public class SIB_MOD
     public SIB_MOD()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ParticleRegister.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         NetworkHandler.register();
@@ -65,10 +61,6 @@ public class SIB_MOD
         @SubscribeEvent
         public static void registerKeyMapping(RegisterKeyMappingsEvent event){
             CustomKeyBindings.register(event);
-        }
-        @SubscribeEvent
-        public static void onParticleFactoryRegistration(RegisterParticleProvidersEvent event) {
-            event.registerSpriteSet(ParticleRegister.TOP_RENDER_PARTICLE_TYPE.get(), TopRenderParticle.Provider::new);
         }
     }
 }

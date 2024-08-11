@@ -4,12 +4,9 @@ import cn.xzhao.search_in_box.SIB_MOD;
 import cn.xzhao.search_in_box.Utils.ValidityCheck;
 import cn.xzhao.search_in_box.net.ItemBlocksPosMessage;
 import cn.xzhao.search_in_box.net.SearchRefuseMessage;
-import cn.xzhao.search_in_box.render.ParticleRegister;
-import cn.xzhao.search_in_box.render.hud.ParticleHUD;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -23,7 +20,6 @@ import static cn.xzhao.search_in_box.client.SlotClickListener.startHeightLightSl
 public class NetHandler {
     public static void showParticles(ItemBlocksPosMessage message){
         Player player= Minecraft.getInstance().player;
-        ParticleOptions pr=ParticleRegister.TOP_RENDER_PARTICLE_TYPE.get();
         if (player==null)   return;
         Level level=player.level();
         String displayName=Component.translatable(message.itemId).getString();
@@ -46,9 +42,7 @@ public class NetHandler {
         }
 
         for(BlockPos pos:message.blockPosList){
-//            level.addParticle(pr,pos.getX(),pos.getY(),pos.getZ(),
-//                    0,0,0);
-            ScreenRender.particleHUDQueue.add(new ParticleHUD(pos));
+            ScreenRender.addParticleHUD(pos);
         }
     }
     public static void showErrorMessage(SearchRefuseMessage message){

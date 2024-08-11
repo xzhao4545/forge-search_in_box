@@ -1,8 +1,7 @@
 package cn.xzhao.search_in_box.mixins;
 
+import cn.xzhao.search_in_box.client.ScreenRender;
 import cn.xzhao.search_in_box.mixins_methodtrans.SearchableContainerBlock;
-import cn.xzhao.search_in_box.render.ParticleRegister;
-import cn.xzhao.search_in_box.render.particle.TopRenderParticleType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -38,13 +37,11 @@ public abstract class ContainerBlockEntityMixin extends BlockEntity implements C
         }
         search_in_box$itemsId =temp;
     }
-    public TopRenderParticleType topParticle= ParticleRegister.TOP_RENDER_PARTICLE_TYPE.get();
     @Unique
     @Override
     public boolean search_in_box$findItemInBox(ItemStack itemStack){
         if(!itemStack.isEmpty()&&search_in_box$itemsId.contains(itemStack.getItem().getDescriptionId())){
-            level.addParticle(topParticle,this.worldPosition.getX(),this.worldPosition.getY(),this.worldPosition.getZ(),
-                    0,0,0);
+            ScreenRender.addParticleHUD(this.worldPosition);
             return true;
         }
         return false;
