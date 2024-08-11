@@ -20,8 +20,9 @@ public class Config
             .comment("Search distance.")
             .comment("Unit:Chunk")
             .defineInRange(List.of("COMMON","distance"), 2, 0, Integer.MAX_VALUE);
-    private static final ForgeConfigSpec.IntValue PARTICLE_LIVE_TIME = BUILDER
+    public static final ForgeConfigSpec.IntValue PARTICLE_LIVE_TIME = BUILDER
             .comment("How long the particle lives")
+            .comment("Unit:Tick")
             .defineInRange(List.of("CLIENT","particle_live_time"), 200, 20, 5000);
     private static final ForgeConfigSpec.IntValue SLOT_HEIGHT_LIGHT_TIME = BUILDER
         .comment("How long the slot height light.")

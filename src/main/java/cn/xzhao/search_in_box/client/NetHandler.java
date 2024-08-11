@@ -5,6 +5,7 @@ import cn.xzhao.search_in_box.Utils.ValidityCheck;
 import cn.xzhao.search_in_box.net.ItemBlocksPosMessage;
 import cn.xzhao.search_in_box.net.SearchRefuseMessage;
 import cn.xzhao.search_in_box.render.ParticleRegister;
+import cn.xzhao.search_in_box.render.hud.ParticleHUD;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
@@ -45,8 +46,9 @@ public class NetHandler {
         }
 
         for(BlockPos pos:message.blockPosList){
-            level.addParticle(pr,pos.getX(),pos.getY(),pos.getZ(),
-                    0,0,0);
+//            level.addParticle(pr,pos.getX(),pos.getY(),pos.getZ(),
+//                    0,0,0);
+            ScreenRender.particleHUDQueue.add(new ParticleHUD(pos));
         }
     }
     public static void showErrorMessage(SearchRefuseMessage message){

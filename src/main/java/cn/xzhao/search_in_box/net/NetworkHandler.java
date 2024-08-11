@@ -11,7 +11,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class NetworkHandler {private static final String PROTOCOL_VERSION = "1";
+public class NetworkHandler {
+    private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(SIB_MOD.MODID, "main"),
             () -> PROTOCOL_VERSION,

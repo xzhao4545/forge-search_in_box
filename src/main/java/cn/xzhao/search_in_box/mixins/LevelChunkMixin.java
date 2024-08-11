@@ -31,7 +31,8 @@ import java.util.List;
 @Mixin(LevelChunk.class)
 public abstract class LevelChunkMixin extends ChunkAccess implements FindItemLevel {
 
-    @Shadow @Final private Level level;
+    @Shadow @Final
+    Level level;
 
     public LevelChunkMixin(ChunkPos p_187621_, UpgradeData p_187622_, LevelHeightAccessor p_187623_, Registry<Biome> p_187624_, long p_187625_, @Nullable LevelChunkSection[] p_187626_, @Nullable BlendingData p_187627_) {
         super(p_187621_, p_187622_, p_187623_, p_187624_, p_187625_, p_187626_, p_187627_);

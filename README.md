@@ -6,7 +6,6 @@
 
 This Forge mod allows you to search for items inside nearby chests and is compatible with *JEI*.
 
-- **Can be installed on client-side only, server-side only, or both**.
 - When hovering over an item with the mouse pointer and pressing a specific key (default is **Y**), it will automatically search nearby chests for the item and mark them.
 - When installed only on the client-side, it can only search chests that you have previously opened. Data resets upon exiting the game or moving away from the chunk where the chest is located; you need to reopen the chest to record data again.
 
@@ -76,7 +75,6 @@ You can configure the behavior and appearance of the mod through commands or con
 
 这个Forge模组允许你在附近的箱子内查找物品，并且与*JEI*兼容。
 
-- **可以仅在客户端或仅在服务端安装**。
 - 当鼠标指针指在某一物品上方时按下特定键位（**默认是Y**），会自动寻找附近箱子内的物品并标记出来。
 - 当只有客户端安装时，仅能查找你已打开过的箱子。且退出游戏或远离该箱子所在区块后数据会重置，需重新打开箱子才能再次记录数据。
 
